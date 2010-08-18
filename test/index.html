@@ -10,14 +10,18 @@
   </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="../jquery.sg.video.js"></script>
+  <script type="text/javascript" src="json2.js"></script>
   <script type="text/javascript">
     $(function() {
+      var browserSupport = JSON.stringify($.support.video);
+      $('#browserCapabilities').html('browser support:\n'+browserSupport);
       $('#testVideo').video("test.mpg");
     });
   </script>
 </head>
 
 <body>
+  <div id="browserCapabilities"></div>
   <div id="testVideo"></div>
 </body>
 </html>
