@@ -7,6 +7,23 @@
     body {
       font: 14px/18px monospace;
     }
+    #testVideo3 {
+      width: 300px;
+      color: #333;
+      padding: 10px 10px 20px 10px;
+      border: 1px solid #BFBFBF;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      background-color: #ffffff;
+      box-shadow: 2px 2px 4px rgba(0,0, 0, 0.3);
+      -webkit-box-shadow: 2px 2px 4px rgba(0,0, 0, 0.3);
+      -moz-box-shadow: 2px 2px 4px rgba(0,0, 0, 0.3);
+      -webkit-transform: rotate(-6deg) translate(0px, 25px);
+      -moz-transform: rotate(-6deg) translate(0px, 25px);
+      transform: rotate(-6deg) translate(0px, 25px);
+
+    }
   </style>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="../jquery.sg.video.js"></script>
@@ -15,13 +32,20 @@
     $(function() {
       var browserSupport = JSON.stringify($.support.video);
       $('#browserCapabilities').html('browser support:\n'+browserSupport);
-      $('#testVideo').video("test");
+      $('#testVideo1').video("test");
+      $('#testVideo2').video("test", {'preferredTag': 'flash'});
+      $('#testVideo3').video("test");
     });
   </script>
 </head>
 
 <body>
   <div id="browserCapabilities"></div>
-  <div id="testVideo"></div>
+  <h1>Test video</h1>
+  <div id="testVideo1"></div>
+  <h1>Test video flash only</h1>
+  <div id="testVideo2"></div>
+  <h1>Test stylish video</h1>
+  <div id="testVideo3"></div>
 </body>
 </html>

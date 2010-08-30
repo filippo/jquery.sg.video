@@ -1,13 +1,4 @@
 (function($){
-     var settings = {'preferredTag':    'video',
-		     'autoplay': false,
-		     'controls': true,
-		     'extensions': {'ogg':   '.ogv',
-				    'h264':  '.mp4',
-				    'webm':  '.webm',
-				    'flash': '.swf'
-				   }
-		    };
 
      // check for video support in the browser and
      // extends the $.support to add video informations
@@ -27,6 +18,21 @@
      }
      // extend $.support with video informations
      $.extend($.support, {'video': videoSupport});
+
+     var objTag = function(src, options) {
+	 var newEl = $('<object type="application/x-shockwave-flash">');
+	 var attrs = {};
+	 if (options['width']) {
+	     attrs['width'] = options['width'];
+	 }
+	 if (options['height']) {
+	     attrs['height'] = options['height'];
+	 }
+	 attrs['data'] = src+options['extensions']['flash'];
+	 newEl = newEl.attr(attrs);
+	 newEl = newEl.append($('<param name="movie">').attr('value', src+options['extensions']['flash']));
+	 return newEl.append($('<a>').attr('href', src+options['extensions']['h264']).text('Downloadthe video'));
+     };
 
      var videoTag = function(src, options) {
 	 var newEl = $('<video>');
@@ -48,28 +54,39 @@
 	 }
 	 newEl = newEl.attr(attrs);
 	 if ($.support['video']['webm'] !== '') {
-	     newEl = newEl.append($('source').attr({'src': src+options['extensions']['webm'],
-						    'type': 'video/webm'}));
+	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['webm'],
+						      'type': 'video/webm'}));
 	 } 
 	 if ($.support['video']['h264'] !== '') {
-	     newEl = newEl.append($('source').attr({'src': src+options['extensions']['h264'],
-						    'type': 'video/mp4'}));
+	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['h264'],
+						      'type': 'video/mp4'}));
 	 } 
 	 if ($.support['video']['ogg'] !== '') {
-	     newEl = newEl.append($('source').attr({'src': src+options['extensions']['ogg'],
-						    'type': 'video/ogg'}));
+	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['ogg'],
+						      'type': 'video/ogg'}));
 	 }
-	 // FIXME: add swf
+	 // add swf video
+	 newEl = newEl.append(objTag(src, options));
 	 return newEl;
      };
 
      // put the video object inside the the wrapped set
      $.fn.video = function(videoBaseName, callerSettings) {
+	 var settings = {'preferredTag': 'video',
+			 'autoplay': false,
+			 'controls': true,
+			 'extensions': {'ogg':   '.ogv',
+					'h264':  '.mp4',
+					'webm':  '.webm',
+					'flash': '.swf'
+				       }
+			};
 	 settings = $.extend(settings, callerSettings||{});
 	 settings['video'] = videoBaseName;
 	 if (settings['preferredTag'] == 'video' && videoSupport) {
-	     this.append(videoTag(videoBaseName, settings));
+	     return this.append(videoTag(videoBaseName, settings));
+	 } else {
+	     return this.append(objTag(videoBaseName, settings));
 	 }
-	 return this;
      };
 })(jQuery);
