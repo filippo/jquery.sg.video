@@ -28,9 +28,12 @@
 	 if (options['height']) {
 	     attrs['height'] = options['height'];
 	 }
-	 attrs['data'] = src+options['extensions']['flash'];
 	 newEl = newEl.attr(attrs);
 	 newEl = newEl.append($('<param name="movie">').attr('value', src+options['extensions']['flash']));
+	 // embed element
+	 
+	 newEl = newEl.append($('<embed type="application/x-shockwave-flash">').attr(attrs)
+			      .attr({'src': src+options['extensions']['flash']}));
 	 return newEl.append($('<a>').attr('href', src+options['extensions']['h264']).text('Downloadthe video'));
      };
 
