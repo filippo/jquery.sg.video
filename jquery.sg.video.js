@@ -29,23 +29,38 @@
      $.extend($.support, {'video': videoSupport});
 
      var videoTag = function(src, options) {
-	 var str = "<video src=\""+src;
-	 if ($.support['video']['webm'] !== '') {
-	     str += options['extensions']['webm'];
-	 } else if ($.support['video']['h264'] !== '') {
-	     str += options['extensions']['h264'];
-	 } else {
-	     str += options['extensions']['ogg'];
-	 }
-	 str += '" ';
+	 var newEl = $('<video>');
+	 var attrs = {};
 	 if (options['controls']) {
-	     str += 'controls="controls" ';
+	     attrs['controls'] = 'controls';
 	 }
 	 if (options['autoplay']) {
-	     str += 'autoplay="autoplay" ';
+	     attrs['autoplay'] = 'autoplay';
 	 }
-	 str += '>your browser does not support the video tag</video>';
-	 return str;
+	 if (options['width']) {
+	     attrs['width'] = options['width'];
+	 }
+	 if (options['height']) {
+	     attrs['height'] = options['height'];
+	 }
+	 if (options['poster']) {
+	     attrs['poster'] = options['poster'];
+	 }
+	 newEl = newEl.attr(attrs);
+	 if ($.support['video']['webm'] !== '') {
+	     newEl = newEl.append($('source').attr({'src': src+options['extensions']['webm'],
+						    'type': 'video/webm'}));
+	 } 
+	 if ($.support['video']['h264'] !== '') {
+	     newEl = newEl.append($('source').attr({'src': src+options['extensions']['h264'],
+						    'type': 'video/mp4'}));
+	 } 
+	 if ($.support['video']['ogg'] !== '') {
+	     newEl = newEl.append($('source').attr({'src': src+options['extensions']['ogg'],
+						    'type': 'video/ogg'}));
+	 }
+	 // FIXME: add swf
+	 return newEl;
      };
 
      // put the video object inside the the wrapped set
@@ -53,7 +68,7 @@
 	 settings = $.extend(settings, callerSettings||{});
 	 settings['video'] = videoBaseName;
 	 if (settings['preferredTag'] == 'video' && videoSupport) {
-	     this.html(videoTag(videoBaseName, settings));
+	     this.append(videoTag(videoBaseName, settings));
 	 }
 	 return this;
      };
