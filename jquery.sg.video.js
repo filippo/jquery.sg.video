@@ -12,15 +12,15 @@
      // check browser support
      if (bool){
 	 videoSupport = {};
-	 videoSupport['ogg']  = elem[canPlayType]('video/ogg; codecs="theora"');
-         videoSupport['h264'] = elem[canPlayType]('video/mp4; codecs="avc1.42E01E"');
+	 videoSupport['ogg']  = elem[canPlayType]('video/ogg; codecs="theora, vorbis"');
+         videoSupport['h264'] = elem[canPlayType]('video/mp4; codecs="avc1.42E01E, mp4a.40.2"');
          videoSupport['webm'] = elem[canPlayType]('video/webm; codecs="vp8, vorbis"');
      }
      // extend $.support with video informations
      $.extend($.support, {'video': videoSupport});
 
      var objTag = function(src, options) {
-	 var newEl = $('<object type="application/x-shockwave-flash">');
+	 var newEl = $('<object>');
 	 var attrs = {};
 	 if (options['width']) {
 	     attrs['width'] = options['width'];
@@ -29,12 +29,13 @@
 	     attrs['height'] = options['height'];
 	 }
 	 newEl = newEl.attr(attrs);
+	 //newEl = newEl.attr('data', src+options['extensions']['flash']);
 	 newEl = newEl.append($('<param name="movie">').attr('value', src+options['extensions']['flash']));
 	 // embed element
 	 
 	 newEl = newEl.append($('<embed type="application/x-shockwave-flash">').attr(attrs)
 			      .attr({'src': src+options['extensions']['flash']}));
-	 return newEl.append($('<a>').attr('href', src+options['extensions']['h264']).text('Downloadthe video'));
+	 return newEl.append($('<a>').attr('href', src+options['extensions']['h264']).text('Download the video'));
      };
 
      var videoTag = function(src, options) {
@@ -58,15 +59,15 @@
 	 newEl = newEl.attr(attrs);
 	 if ($.support['video']['webm'] !== '') {
 	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['webm'],
-						      'type': 'video/webm'}));
+						      'type': 'video/webm; codecs="vp8, vorbis"'}));
 	 } 
 	 if ($.support['video']['h264'] !== '') {
 	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['h264'],
-						      'type': 'video/mp4'}));
+						      'type': 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'}));
 	 } 
 	 if ($.support['video']['ogg'] !== '') {
 	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['ogg'],
-						      'type': 'video/ogg'}));
+						      'type': 'video/ogg; codecs="theora, vorbis"'}));
 	 }
 	 // add swf video
 	 newEl = newEl.append(objTag(src, options));
