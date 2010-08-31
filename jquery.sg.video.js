@@ -31,8 +31,7 @@
 	 newEl = newEl.attr(attrs);
 	 //newEl = newEl.attr('data', src+options['extensions']['flash']);
 	 newEl = newEl.append($('<param name="movie">').attr('value', src+options['extensions']['flash']));
-	 // embed element
-	 
+	 // embed element	 
 	 newEl = newEl.append($('<embed type="application/x-shockwave-flash">').attr(attrs)
 			      .attr({'src': src+options['extensions']['flash']}));
 	 return newEl.append($('<a>').attr('href', src+options['extensions']['h264']).text('Download the video'));
@@ -53,9 +52,11 @@
 	 if (options['height']) {
 	     attrs['height'] = options['height'];
 	 }
-	 if (options['poster']) {
+	 /* With poster enabled Opera stops working
+	 if (options['poster'] !== false) {
 	     attrs['poster'] = options['poster'];
 	 }
+	  */
 	 newEl = newEl.attr(attrs);
 	 if ($.support['video']['webm'] !== '') {
 	     newEl = newEl.append($('<source>').attr({'src': src+options['extensions']['webm'],
@@ -79,6 +80,7 @@
 	 var settings = {'preferredTag': 'video',
 			 'autoplay': false,
 			 'controls': true,
+			 'poster': false,
 			 'extensions': {'ogg':   '.ogv',
 					'h264':  '.mp4',
 					'webm':  '.webm',
