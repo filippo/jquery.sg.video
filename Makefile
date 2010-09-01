@@ -20,5 +20,8 @@ lint: ${TOLINT}
 lib/%.js: lint.foo
 	rhino tools/jslint.js $@
 
+lint.foo:
+	echo "Running lint...";
+
 clean: 
 	rm build/*.*;
