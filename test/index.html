@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr"  class="no-js">
 <head>
-  <!-- <meta http-equiv="X-UA-Compatible" content="IE=7" > -->
   <title>jQuery.sg.video tests</title>
   <style media="screen">
     body {
@@ -26,7 +25,7 @@
     }
     .clearer {display: block; clear: both;}
   </style>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
   <script type="text/javascript" src="../lib/jquery.sg.video.js"></script>
   <script type="text/javascript" src="json2.js"></script>
   <script type="text/javascript">
@@ -52,8 +51,12 @@
   <h1>Test with static html</h1>
   <div id="testVideo4">
     <video controls="controls">
-      <source src="test.ogv" type="video/ogg">
       <source src="test.mp4" type="video/mp4">
+      <source src="test.ogv" type="video/ogg">
+      <object type="application/x-shockwave-flash">
+	<param name="movie" value="test.swf">
+	<a href="test.mp4">Download the video</a>
+      </object>
     </video>
   </div>
 </body>
