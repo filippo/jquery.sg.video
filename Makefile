@@ -1,6 +1,6 @@
 TEST_DIR = test
 
-VSN = 0.1.0
+VSN = 1.0.0
 
 TOLINT = lib/*.js
 
