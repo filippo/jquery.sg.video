@@ -25,9 +25,10 @@ Change the src to the appropriate location.
     <script src="jquery.sg.video.js"></script>
 
 ### 3. Call the plugin
-Call the plugin passing the path to the video source file on disk.
+Call the plugin passing the path to the video source files on disk.
+
 To instantiate the video DOM elements you have to pass to the plugin 
-the path to the video files in the different formats and optionally some options.
+the path to the video files in the different formats and optionally some options :-).
 
 Eg.
      <script>
@@ -47,12 +48,12 @@ you can simply write:
      </script>
 
 Options is an object containing the following attributes:
- - preferrendTag: string. Default value: video. If anything else is passed the generated html is for a flash only video.
- - xhtmlStyleTag: boolean. Default value: false. Tells wether the generated html is in xhtml style or not.
- - autoplay: boolean. Default value: false. If true adds the autoplay attribute to the video tag.
- - controls: boolean. Default value: true. Wether to display video controls or not.
- - poster: boolean or string. Default value: false. This option is not implemented yet since it breaks Opera.
- - width: integer. Video width in pixels.
- - height: integer. Video height in pixels.
+ * preferrendTag: string. Default value: video. If anything else is passed the generated html is for a flash only video.
+ * xhtmlStyleTag: boolean. Default value: false. Tells wether the generated html is in xhtml style or not.
+ * autoplay: boolean. Default value: false. If true adds the autoplay attribute to the video tag.
+ * controls: boolean. Default value: true. Wether to display video controls or not.
+ * poster: boolean or string. Default value: false. This option is not implemented yet since it breaks Opera.
+ * width: integer. Video width in pixels.
+ * height: integer. Video height in pixels.
 
 Note: In order to have a nice fallback for Internet Explorer it's probably a good idea to always pass video width and heigth.
