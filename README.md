@@ -48,6 +48,7 @@ you can simply write:
      </script>
 
 Options is an object containing the following attributes:
+
   * `preferrendTag`: string. Default value: video. If anything else is passed the generated html is for a flash only video.
 
   * `xhtmlStyleTag`: boolean. Default value: false. Tells wether the generated html is in xhtml style or not.
