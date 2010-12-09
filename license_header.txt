@@ -6,4 +6,9 @@
  * Licensed under the Mozilla Public License Version 1.1
  * https://github.com/filippo/jquery.sg.video/blob/master/MPL-1.1-LICENSE.txt
  *
+ * Includes code snippets from Modernizr
+ * http://www.modernizr.com/
+ * Dual-licensed under the BSD or MIT licenses.
+ * http://www.modernizr.com/license/
+ *
  */
