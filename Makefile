@@ -12,7 +12,8 @@ build: build.foo
 
 build.foo: 
 	rm build/*.*; \
-	echo "var sg_video={version: '$(VSN)'};" > build/jquery.sg.video-$(VSN).js.txt; \
+	cat license_header.txt                           > build/jquery.sg.video-$(VSN).js.txt; \
+	echo "var sg_video={version: '$(VSN)'};"        >> build/jquery.sg.video-$(VSN).js.txt; \
 	python tools/jsmin.py < lib/jquery.sg.video.js  >> build/jquery.sg.video-$(VSN).js.txt;
 
 lint: ${TOLINT}

@@ -1,0 +1,9 @@
+/*!
+ * jquery.sg.video library
+ * https://github.com/filippo/jquery.sg.video
+ *
+ * Copyright 2010, S.G. Consulting srl
+ * Licensed under the Mozilla Public License Version 1.1
+ * https://github.com/filippo/jquery.sg.video/blob/master/MPL-1.1-LICENSE.txt
+ *
+ */
