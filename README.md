@@ -31,6 +31,7 @@ To instantiate the video DOM elements you have to pass to the plugin
 the path to the video files in the different formats and optionally some options :-).
 
 Eg.
+
      <script>
      var myvideo = {'ogg': 'oggvideo.ogv', 
                     'h264': 'h264video.mp4', 
